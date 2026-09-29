@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Story - Modern Soft Pink</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFAFB;
+  --pink-light:#FDE8E9;
+  --pink-main:#F8C8C8;
+  --pink-accent:#D68A8A;
+  --pink-dark:#B86B6B;
+  --text:#2B2B2B;
+  --text-light:#6B6B6B;
+  --white:#FFFFFF;
+  --radius:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans', sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Sora', sans-serif;}
+
+/* Progress Bar */
+#progress{
+  position:fixed;top:0;left:0;height:4px;
+  background:var(--pink-accent);
+  width:0%;z-index:9999;transition:width 0.1s;
+}
+
+/* Navbar */
+nav{
+  position:fixed;top:20px;left:50%;transform:translateX(-50%);
+  background:rgba(255,255,255,0.8);backdrop-filter:blur(12px);
+  border:1px solid var(--pink-light);
+  padding:10px 24px;border-radius:100px;
+  display:flex;gap:24px;z-index:100;
+  box-shadow:0 4px 20px rgba(214,138,138,0.1);
+}
+nav a{text-decoration:none;color:var(--text-light);font-size:14px;font-weight:500;transition:.3s}
+nav a:hover{color:var(--pink-accent)}
+
+/* Hero */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  justify-content:center;text-align:center;
+  padding:100px 20px 60px;position:relative;overflow:hidden;
+}
+.blob{
+  position:absolute;width:600px;height:600px;
+  background:radial-gradient(circle, var(--pink-main) 0%, transparent 70%);
+  border-radius:50%;filter:blur(40px);opacity:0.6;
+  top:-10%;right:-10%;animation:float 8s infinite ease-in-out;
+}
+.blob2{
+  left:-10%;top:40%;background:radial-gradient(circle, #FFD6E0 0%, transparent 70%);
+  animation-delay:-4s;
+}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero h1{font-size:clamp(40px, 8vw, 84px);line-height:0.9;letter-spacing:-2px}
+.hero h1 span{color:var(--pink-accent)}
+.typing{margin-top:20px;font-size:18px;color:var(--text-light);min-height:28px}
+.btn-scroll{
+  margin-top:40px;display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;background:var(--text);color:white;
+  border-radius:100px;text-decoration:none;font-size:14px;transition:.3s;
+}
+.btn-scroll:hover{background:var(--pink-dark);transform:translateY(-2px)}
+
+/* Sections */
+section{padding:100px 6%;max-width:1200px;margin:0 auto}
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* About */
+.about{display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center}
+.profile-frame{
+  position:relative;background:var(--white);
+  border-radius:var(--radius);padding:12px;
+  box-shadow:0 20px 60px rgba(214,138,138,0.15);
+  border:1px solid var(--pink-light);
+}
+.profile-frame::before{
+  content:'';position:absolute;inset:-20px;
+  border:1px dashed var(--pink-main);border-radius:32px;z-index:-1;
+}
+.profile-frame img{
+  width:100%;height:480px;object-fit:cover;
+  border-radius:18px;display:block;
+}
+.frame-badge{
+  position:absolute;bottom:28px;left:28px;
+  background:var(--white);padding:10px 16px;border-radius:100px;
+  font-size:13px;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+.about-text h2{font-size:42px;line-height:1.1;margin-bottom:20px}
+.about-text p{color:var(--text-light);line-height:1.8;margin-bottom:16px}
+
+/* Projects */
+.projects{background:var(--pink-light);border-radius:40px;margin-top:40px;padding:100px 6%}
+.projects h2{text-align:center;font-size:42px;margin-bottom:50px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px,1fr));gap:24px}
+.card{
+  background:var(--white);border-radius:var(--radius);padding:24px;
+  border:1px solid transparent;transition:all.4s ease;
+  box-shadow:0 4px 20px rgba(0,0,0,0.03);
+}
+.card:hover{transform:translateY(-8px) rotate(0.5deg);border-color:var(--pink-main);box-shadow:0 20px 40px rgba(214,138,138,0.15)}
+.card span{font-size:12px;letter-spacing:1px;color:var(--pink-accent);font-weight:700;text-transform:uppercase}
+.card h3{margin:12px 0 8px;font-size:22px}
+.card p{color:var(--text-light);font-size:14px;line-height:1.6}
+
+/* Contact */
+.contact{text-align:center;padding:120px 6%}
+.contact h2{font-size:clamp(32px, 6vw, 64px);line-height:1}
+.contact h2 i{font-style:normal;color:var(--pink-accent)}
+.contact-links{margin-top:40px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.link-btn{
+  padding:16px 32px;border-radius:100px;text-decoration:none;
+  border:1px solid var(--pink-main);color:var(--text);font-weight:600;transition:.3s;
+}
+.link-btn.primary{background:var(--pink-accent);color:white;border-color:var(--pink-accent)}
+.link-btn:hover{transform:translateY(-2px)}
+
+@media(max-width:900px){.about{grid-template-columns:1fr}.profile-frame img{height:380px}}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#work">Work</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="hero" id="home">
+  <div class="blob"></div><div class="blob blob2"></div>
+  <div class="hero-content">
+    <h1>Hi, I'm <span>Nayla</span> — a storyteller through code.</h1>
+    <div class="typing" id="typing"></div>
+    <a href="#about" class="btn-scroll">↓ Scroll my story</a>
+  </div>
+</div>
+
+<section class="about reveal" id="about">
+  <div class="profile-frame">
+    <!-- GANTI FOTO DI SINI -->
+    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800" alt="Foto Profil">
+    <div class="frame-badge">📍 Bandung, Indonesia • Available for work</div>
+  </div>
+  <div class="about-text">
+    <h2>Who I Am</h2>
+    <p>Halo! Aku adalah Web Developer yang percaya kalau website yang bagus itu bukan cuma soal kode, tapi soal rasa.</p>
+    <p>Aku suka menggabungkan estetika <b style="color:var(--pink-accent)">soft & modern</b> dengan fungsi yang clean. Fokusku di HTML, CSS, dan JavaScript untuk bikin pengalaman digital yang bikin orang betah.</p>
+    <p>Saat ini lagi eksplorasi dunia UI/UX dan micro-interaction.</p>
+  </div>
+</section>
+
+<div class="projects reveal" id="work">
+  <h2>What I Build</h2>
+  <div class="grid">
+    <div class="card"><span>2024 • Web Design</span><h3>Personal Portfolio V1</h3><p>Website portfolio minimalis dengan dominasi soft pink dan animasi scroll yang smooth.</p></div>
+    <div class="card"><span>2024 • JavaScript</span><h3>Interactive To-Do App</h3><p>Aplikasi to-do list dengan drag & drop dan local storage, desain neumorphism pink.</p></div>
+    <div class="card"><span>2023 • Landing Page</span><h3>Bloom Skincare</h3><p>Landing page untuk brand kecantikan lokal dengan vibe modern dan feminine.</p></div>
+  </div>
+</div>
+
+<section class="contact reveal" id="contact">
+  <h2>Now you know my story.<br><i>Let's build yours.</i></h2>
+  <div class="contact-links">
+    <a href="mailto:halo@email.com" class="link-btn primary">Email Me</a>
+    <a href="#" class="link-btn">GitHub</a>
+    <a href="#" class="link-btn">Instagram</a>
+  </div>
+</section>
+
+<script>
+// 1. Typing Effect
+const texts = ["a Web Developer from Bandung.", "who loves soft pink aesthetics.", "and building beautiful things on the web."];
+let textIndex = 0, charIndex = 0, isDeleting = false;
+const typingEl = document.getElementById('typing');
+function type(){
+  const current = texts[textIndex];
+  if(isDeleting){ typingEl.textContent = current.substring(0, charIndex--); }
+  else{ typingEl.textContent = current.substring(0, charIndex++); }
+  if(!isDeleting && charIndex === current.length+1){ isDeleting = true; setTimeout(type, 1200); return; }
+  if(isDeleting && charIndex === 0){ isDeleting = false; textIndex = (textIndex+1)%texts.length; }
+  setTimeout(type, isDeleting? 40 : 90);
+}
+type();
+
+// 2. Scroll Progress & Reveal
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById('progress').style.width = (winScroll/height)*100 + "%";
+
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+  });
+});
+// Trigger awal
+window.dispatchEvent(new Event('scroll'));
+</script>
+</body>
+  </html>
